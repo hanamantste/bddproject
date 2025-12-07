@@ -6,10 +6,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 
 def before_scenario(context,scenario):
-    context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+
     context.driver.get("https://tutorialsninja.com/demo/index.php?route=account/login")
     context.driver.maximize_window()
     context.driver.implicitly_wait(10)
