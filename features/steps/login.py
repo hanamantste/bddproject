@@ -1,11 +1,10 @@
 import time
-
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
-
+import allure
 
 # def before_scenario(context,driver):
 #     context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -43,6 +42,7 @@ def step_impl(context,username,password):
     enter_password.send_keys(password)
 
 
+
 @when(u'click login button')
 def step_impl(context):
     login_button = context.driver.find_element(By.XPATH,"//*[@class='btn btn-primary' and @value='Login']")
@@ -50,10 +50,17 @@ def step_impl(context):
 
 
 
-@then(u'land on home page')
-def step_impl(context):
-    print('Login successfull')
+@then(u'On Success full login"{text}" is displayed on home page')
+def step_impl(context,text):
+    home_page = context.driver.find_element(By.XPATH, "//h1/a").text
+    assert text == home_page, f"the displayed text is not matching with expected {text}"
+    allure.attach(context.driver.get_screenshot_as_png(),
+    name="Login Screenshot",attachment_type=allure.attachment_type.PNG )
+    allure.attach(
+        "Login successful",
+        name="Execution Log",
+        attachment_type=allure.attachment_type.TEXT
+    )
     # context.driver.close()
     # context.driver.quit()
-    
     time.sleep(1)

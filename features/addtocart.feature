@@ -1,3 +1,5 @@
+
+@smoke @rerun
 Feature: Add to cart
   Scenario: Adding to Cart and checkout
     Given user is on login page

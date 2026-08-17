@@ -10,10 +10,11 @@ from selenium.webdriver.chrome.options import Options
 
 
 def before_scenario(context,scenario):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless=new")
-    chrome_options.add_argument("--disable-gpu")
-    context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+    # chrome_options = Options()
+    # chrome_options.add_argument("--headless=new")
+    # chrome_options.add_argument("--disable-gpu")
+    # context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+    context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     context.driver.get("https://tutorialsninja.com/demo/index.php?route=account/login")
     context.driver.maximize_window()
     context.driver.implicitly_wait(10)
