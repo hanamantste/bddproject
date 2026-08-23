@@ -8,6 +8,6 @@ Feature: Login
     Examples:
     |username                     |  password     | text          |
     |ragh.gr89@gmail.com          |  8147151204   | Qafox.com     |
-    |Admin                        |  admin123     | Qafox.com1    |
+    |Admin                        |  admin123     | Qafox.com     |
 
 
